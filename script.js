@@ -34,15 +34,19 @@ function createTaskElement(task) {
   currTask.textContent = task.text;
   currTask.id = task.id;
 
+  let buttonDiv = document.createElement("div");
+  buttonDiv.className = "buttonDiv";
+  currTask.appendChild(buttonDiv);
+
   let completeButton = document.createElement("button");
   completeButton.className = "completeButton";
   completeButton.textContent = "Complete Task";
-  currTask.appendChild(completeButton);
+  buttonDiv.appendChild(completeButton);
 
   let deleteButton = document.createElement("button");
   deleteButton.className = "deleteButton";
   deleteButton.textContent = "Delete Task";
-  currTask.appendChild(deleteButton);
+  buttonDiv.appendChild(deleteButton);
 
   if (task.completed) {
     currTask.style.textDecoration = "line-through";
@@ -98,7 +102,7 @@ taskList.addEventListener("click", function (event) {
     event.target.className === "deleteButton" ||
     event.target.className === "completeButton"
   ) {
-    const task = event.target.parentElement;
+    const task = event.target.parentElement.parentElement;
     const taskIdToRemove = parseInt(task.id, 10);
     const taskIdx = taskArr.findIndex(
       (taskElem) => taskIdToRemove === taskElem.id
