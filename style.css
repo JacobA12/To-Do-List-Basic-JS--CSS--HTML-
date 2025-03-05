@@ -1,0 +1,30 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+}
+
+.container {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50vw;
+  margin-bottom: 50px;
+  background-color: blue;
+}
+
+.deleteButton, .completeButton {
+  margin-left: 10px;
+}
+
+.task {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 5px;
+  min-height: 30px;
+}
