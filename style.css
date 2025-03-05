@@ -32,6 +32,7 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: black;
 }
 
 form input,
@@ -45,7 +46,7 @@ form button {
 }
 
 form button {
-  color: rgba(205, 27, 17, 0.854);
+  color: black;
   background: white;
   cursor: pointer;
   transition: all 0.3 ease;
@@ -54,7 +55,7 @@ form button {
 
 form button:hover {
   color: white;
-  background: rgb(255, 0, 0);
+  background: rgb(27, 0, 135);
 }
 
 .container {
