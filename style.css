@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: #06beb6; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -13,29 +19,7 @@ body {
 
   color: white;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 10px;
+  min-height: 100vh;
 }
 
-.container {
-  justify-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 50vw;
-  margin-bottom: 50px;
-}
 
-.deleteButton,
-.completeButton {
-  margin-left: 10px;
-}
-
-.task {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 5px;
-  margin-bottom: 5px;
-  min-height: 30px;
-}
