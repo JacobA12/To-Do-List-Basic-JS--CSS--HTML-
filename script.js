@@ -1,8 +1,6 @@
-let textField = document.querySelector(".newTask");
-let addTaskButton = document.querySelector(".addTask");
 let taskList = document.querySelector("#taskList");
 let taskArr = [];
-let taskIdCounter = 0; //Counter for Task Object IDs
+let taskIdCounter = 0;
 
 // Load tasks from local storage on page load
 function loadTasks() {
@@ -22,7 +20,7 @@ function saveTasks() {
 
 // Render tasks to the taskList
 function renderTasks() {
-  taskList.innerHTML = "";
+  taskList.innerHTML = ""; // Clear existing tasks
 
   taskArr.forEach((task) => {
     createTaskElement(task);
@@ -54,21 +52,27 @@ function createTaskElement(task) {
   taskList.appendChild(currTask);
 }
 
-addTaskButton.addEventListener("click", function () {
-  const taskText = textField.value.trim();
+// Get form and input elements
+const addTaskForm = document.getElementById("addTaskForm");
+const newTaskInput = document.getElementById("newTask");
+
+// Add Task functionality (handles form submission)
+addTaskForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent page reload
+
+  const taskText = newTaskInput.value.trim();
   if (taskText === "") return;
 
-  const taskId = taskIdCounter++;
   const task = {
-    id: taskId,
+    id: taskIdCounter++,
     text: taskText,
     completed: false,
   };
 
   taskArr.push(task);
   saveTasks();
-  createTaskElement(task);
-  textField.value = "";
+  renderTasks(); //Update the UI
+  newTaskInput.value = ""; // Clear the input field
 });
 
 //removes the task from the taskList and the taskArr
@@ -76,6 +80,7 @@ function handleDeleteTask(task, taskIdx) {
   taskList.removeChild(task);
   taskArr.splice(taskIdx, 1);
   saveTasks();
+  renderTasks(); //Update the UI
 }
 
 //sets the completed boolean in Task to true and changes the style of the task
@@ -84,20 +89,18 @@ function handleCompleteTask(task, taskIdx) {
   task.style.textDecoration = "line-through";
   task.style.color = "grey";
   saveTasks();
-  renderTasks();
+  renderTasks(); //Update the UI
 }
 
-// This function adds an eventListener to the taskList. If a click event happens, it will check to make sure it was from a deleteButton
-// It will then target that item and call the appropriate function to handle the event
-
+// Event listener for taskList clicks (delete and complete buttons)
 taskList.addEventListener("click", function (event) {
   if (
     event.target.className === "deleteButton" ||
     event.target.className === "completeButton"
   ) {
-    let task = event.target.parentElement;
-    let taskIdToRemove = parseInt(task.id, 10);
-    let taskIdx = taskArr.findIndex(
+    const task = event.target.parentElement;
+    const taskIdToRemove = parseInt(task.id, 10);
+    const taskIdx = taskArr.findIndex(
       (taskElem) => taskIdToRemove === taskElem.id
     );
 
